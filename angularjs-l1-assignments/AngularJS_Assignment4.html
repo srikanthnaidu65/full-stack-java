@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AngularJS - Assignment4</title>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+</script>
+<script src="CDController.js"></script>
+<body>
+	<div ng-app="cdApp" ng-controller="CDController">
+		<table border="0">
+			<tr>
+				<td>Enter CD Id:</td>
+				<td><input type="text" ng-model="CD.id" pattern="[A-Za-z0-9]+"></td>
+			</tr>
+			<tr>
+				<td>Enter CD Title:</td>
+				<td><input type="text" ng-model="CD.title" pattern="[A-Za-z]+"></td>
+			</tr>
+			<tr>
+				<td>Enter CD Price:</td>
+				<td><input type="number" ng-model="CD.price"></td>
+			</tr>
+		</table>
+		<br>
+		<div>Entered Details:</div>
+		{{ CD.getAllDetails() }}
+
+	</div>
+</body>
+</html>

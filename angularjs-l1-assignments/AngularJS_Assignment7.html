@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AngularJS - Assignment7</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<body ng-app="cdApp">
+	<p>
+		<a href="#/!">Home Page</a>
+	</p>
+	<p>
+		<a href="#!viewcd">View CDs</a>
+	</p>
+	<p>
+		<a href="#!newcd">New CDs</a>
+	</p>
+	<hr>
+	<div ng-view></div>
+
+	<script>
+		var myApp = angular.module("cdApp", [ "ngRoute" ]);
+		myApp.config(function($routeProvider) {
+			$routeProvider.when("/", {
+				templateUrl : "Home.html"
+			}).when("/viewcd", {
+				templateUrl : "ViewCD.html"
+			}).when("/newcd", {
+				templateUrl : "NewCD.html"
+			});
+		});
+	</script>
+</body>
+</html>

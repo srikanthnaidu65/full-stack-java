@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AngularJS - Assignment3</title>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+	
+</script>
+<body>
+	<div ng-app="dateApp" ng-controller="dateCtrl">
+
+		Current Date: 
+		<span ng-bind="(currentDate | date:'dd-MMM-yyyy')"></span>
+
+		<br><br> 
+		Last Modified Date: 
+		<span ng-bind="(lastModifiedDate | date:'dd-MMM-yyyy hh:mm:ss')"></span>
+
+	</div>
+
+	<script>
+		var myApp = angular.module('dateApp', []);
+		myApp.controller('dateCtrl', function($scope) {
+
+			$scope.currentDate = new Date();
+			$scope.lastModifiedDate = new Date(document.lastModified);
+
+		});
+	</script>
+
+</body>
+</html>

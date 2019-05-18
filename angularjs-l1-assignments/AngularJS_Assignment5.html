@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AngularJS - Assignment5</title>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+</script>
+<style>
+table, th, td {
+	border: 1px solid grey;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+</style>
+</head>
+
+<body>
+	<div ng-app="cdApp" ng-controller="CDController">
+	<center><font size="8" color="blue">{{ parlorName }}</font><br>
+		<font size="5" color="green">{{ address }}</font></center><br>
+		<table align="center">
+			<tr>
+				<th>Title</th>
+				<th>Language</th>
+				<th>Price</th>
+			</tr>
+			<tbody>
+				<tr ng-repeat="CD in cdDetails">
+					<td>{{ CD.title }}</td>
+					<td>{{ CD.language }}</td>
+					<td>{{ CD.price }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+	var myApp = angular.module('cdApp', []);	
+	myApp.controller('CDController', function ($scope) {
+		$scope.parlorName = "CD Online Stores";
+		$scope.address = "Sarjapur Road, Bangalore, Karnataka, India - 562 125";
+		$scope.cdDetails = [
+					{title: "La La Land", language: "English", price: "Rs. 500"},
+					{title: "Inception", language: "English", price: "Rs. 450"},
+					{title: "AngularJS", language: "English", price: "1000"},
+					{title: "Ek Tha Tiger", language: "Hindi", price: "250"},
+					{title: "Java 9", language: "English", price: "800"}         
+				];
+   });		
+</script>
+</body>
+</html>

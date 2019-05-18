@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AngularJS - Assignment8</title>
+</head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+	
+</script>
+<body ng-app="tableApp">
+	<div ng-controller="tableController">
+		<h3>
+			<center>
+				Primary School Kids
+				<center>
+		</h3>
+		<hr>
+		<button ng-click="generateTable()">Generate Tables Of 5</button>
+		<br><br>
+		<div ng-if="$index!=0" ng-repeat="n in tables">5 * {{$index}} =
+			{{n}}</div>
+	</div>
+
+	<script>
+		angular.module('tableApp', [])
+				.controller('tableController',
+						[
+						'$scope', function($scope) {
+							$scope.count = 0;
+							$scope.tables = [];
+							$scope.generateTable = function() {
+								if ($scope.count < 10) {
+									$scope.count++;
+								}
+								for ($scope.num = 1; $scope.num <= $scope.count; $scope.num++) {
+									$scope.tables[$scope.num] = 5 * $scope.num;
+								}
+							};
+						} ]);
+	</script>
+</body>
+</html>
