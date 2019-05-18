@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5 Assignment 2</title>
+</head>
+<body>
+
+	<font size="10" color="green">Xena Events</font>
+	<img
+		src="xena.png"
+		width="200" height="100" />
+	<hr>
+	<h4 align="center">User Registration</h4>
+	<hr>
+	<form name="regForm" action="#" method="post">
+		<table>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" name="name" pattern="[A-Za-z]+"
+					title="Name with alphabets only" required /></td>
+			</tr>
+			<tr>
+				<td>Age:</td>
+				<td><input type="number" name="age" min="18" required /></td>
+			</tr>
+			<tr>
+				<td>Email ID:</td>
+				<td><input type="email" name="email" required /></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><input list="cities" name="city" required> <datalist
+						id="cities">
+						<option value="Rajkot">
+    <option value="Vizag">
+    <option value="Bangalore">
+  </datalist></td>
+</tr>
+<tr>
+<td><input type="submit" value="Submit"/></td>
+<td><input type="reset" value="Reset"/></td>
+</tr>
+</table>
+</form> 
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5 Assignment 4</title> 
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+</head>
+<body>
+<div class="chart" style="height: 400px; width: 50%;margin: 0 auto"></div>
+</body>
+
+<script type="text/javascript">
+$(function() {
+    $(".chart").CanvasJSChart({
+        title: {
+            text: "Agricultural Statistical Department of GOI"
+        },
+        axisY: {
+            title: "Production In Tonnes",
+            includeZero: false
+        },
+        axisX: {
+            interval: 1
+        },
+        data: [
+        {
+            type: "line",
+            toolTipContent: "{label}: {y} tonnes",
+            dataPoints: [
+                { label: 2001,  y: 281 },
+                { label: 2002,  y: 277 },
+                { label: 2003,  y: 275 },
+                { label: 2004,  y: 457 },
+                { label: 2005,  y: 200 },
+                { label: 2006,  y: 280 },
+                { label: 2007,  y: 150 }
+            ]
+        }
+        ]
+    });
+});
+</script>
+</html>
+

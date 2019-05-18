@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>HTML5 Assignment 5</title> 
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+</head>
+<body>
+<div class="chart" style="height: 400px; width: 50%;margin: 0 auto"></div>
+</body>
+
+<script type="text/javascript">
+$(function() {
+    $(".chart").CanvasJSChart({
+        title: {
+            text: "BCCI - India T20 - Match 3"
+        },
+        axisY: {
+            title: "Runs",
+            includeZero: false
+        },
+        axisX: {
+            interval: 1
+        },
+        data: [
+        {
+            type: "line",
+            toolTipContent: "{label}: {y} runs",
+            dataPoints: [
+                { label: 5,  y: 40 },
+                { label: 10,  y: 75 },
+                { label: 15,  y: 140 },
+                { label: 20,  y: 210 }
+            ]
+        }
+        ]
+    });
+});
+</script>
+</html>

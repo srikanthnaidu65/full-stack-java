@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5 Assignment 3</title>
+</head>
+<body>
+
+	<font size="9" color="cyan">Awesome Online Videos</font>
+	<img
+		src="tj.jpg" width="250" height="150" />
+	<hr>
+
+	<div style="text-align: center">
+		<video id="tomjerry" width="420">
+			<source src="tom_jerry.mp4" type="video/mp4">
+		</video>
+		<br>
+		<br>
+		<button onclick="play()">Play</button>
+		<button onclick="pause()">Pause</button>
+	</div>
+
+	<script>
+		var tomjerry = document.getElementById("tomjerry");
+
+		function play() {
+			tomjerry.play();
+		}
+
+		function pause() {
+			tomjerry.pause();
+		}
+	</script>
+
+</body>
+</html>
