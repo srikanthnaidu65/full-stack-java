@@ -1,0 +1,123 @@
+2018-05-17 14:02:33.831  INFO 24160 --- [  restartedMain] com.wipro.srikanth.SpringStarterApp      : Starting SpringStarterApp on TG-Sprint-VDI24 with PID 24160 (/home/osgdev/Desktop/sr20000959/sprdata/springdata8/target/classes started by osgdev in /home/osgdev/Desktop/sr20000959/sprdata/springdata8)
+2018-05-17 14:02:33.831  INFO 24160 --- [  restartedMain] com.wipro.srikanth.SpringStarterApp      : No active profile set, falling back to default profiles: default
+2018-05-17 14:02:33.851  INFO 24160 --- [  restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@193c63a0: startup date [Thu May 17 14:02:33 IST 2018]; root of context hierarchy
+2018-05-17 14:02:34.875  INFO 24160 --- [  restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-05-17 14:02:34.935  INFO 24160 --- [  restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2a146589] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-17 14:02:35.234  INFO 24160 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8001 (http)
+2018-05-17 14:02:35.236  INFO 24160 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-05-17 14:02:35.251  INFO 24160 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.31
+2018-05-17 14:02:35.298  INFO 24160 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-05-17 14:02:35.309  INFO 24160 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1458 ms
+2018-05-17 14:02:35.506  INFO 24160 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-05-17 14:02:35.508  INFO 24160 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-05-17 14:02:35.508  INFO 24160 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-05-17 14:02:35.508  INFO 24160 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-05-17 14:02:35.509  INFO 24160 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-05-17 14:02:35.733  INFO 24160 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2018-05-17 14:02:35.758  INFO 24160 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2018-05-17 14:02:35.770  INFO 24160 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-05-17 14:02:35.771  INFO 24160 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-05-17 14:02:35.801  INFO 24160 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+Hibernate: drop table if exists employee
+Hibernate: create table employee (emp_id bigint not null, emp_doj datetime, emp_name varchar(255), emp_salary double precision, emp_type varchar(255), primary key (emp_id)) engine=MyISAM
+2018-05-17 14:02:36.180  INFO 24160 --- [  restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3c7c2b90'
+2018-05-17 14:02:36.181  INFO 24160 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-05-17 14:02:36.197  WARN 24160 --- [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'employeeController': Unsatisfied dependency expressed through field 'service'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'employeeService' defined in file [/home/osgdev/Desktop/sr20000959/sprdata/springdata8/target/classes/com/wipro/srikanth/service/EmployeeService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.wipro.srikanth.service.EmployeeService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.wipro.srikanth.model.QEmployee cannot be resolved
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+
+2018-05-17 14:02:36.197  INFO 24160 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-05-17 14:02:36.198  INFO 24160 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2018-05-17 14:02:36.215  INFO 24160 --- [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2018-05-17 14:02:36.216  INFO 24160 --- [  restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-05-17 14:02:36.243  INFO 24160 --- [  restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-05-17 14:02:36.256 ERROR 24160 --- [  restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'employeeController': Unsatisfied dependency expressed through field 'service'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'employeeService' defined in file [/home/osgdev/Desktop/sr20000959/sprdata/springdata8/target/classes/com/wipro/srikanth/service/EmployeeService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.wipro.srikanth.service.EmployeeService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.wipro.srikanth.model.QEmployee cannot be resolved
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:587) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:91) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:373) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1348) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:578) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$$Lambda$101/309759282.getObject(Unknown Source) ~[na:na]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:869) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759) [spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395) [spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) [spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255) [spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243) [spring-boot-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at com.wipro.srikanth.SpringStarterApp.main(SpringStarterApp.java:10) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_45-internal]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_45-internal]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_45-internal]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_45-internal]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'employeeService' defined in file [/home/osgdev/Desktop/sr20000959/sprdata/springdata8/target/classes/com/wipro/srikanth/service/EmployeeService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.wipro.srikanth.service.EmployeeService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.wipro.srikanth.model.QEmployee cannot be resolved
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1135) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:541) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$$Lambda$101/309759282.getObject(Unknown Source) ~[na:na]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:251) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1065) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:584) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	... 25 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.wipro.srikanth.service.EmployeeService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.wipro.srikanth.model.QEmployee cannot be resolved
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:182) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1228) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	... 37 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The import com.wipro.srikanth.model.QEmployee cannot be resolved
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+	QEmployee cannot be resolved to a type
+	QEmployee cannot be resolved to a variable
+
+	at com.wipro.srikanth.service.EmployeeService.<init>(EmployeeService.java:15) ~[classes/:na]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_45-internal]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_45-internal]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_45-internal]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422) ~[na:1.8.0_45-internal]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:170) ~[spring-beans-5.0.6.RELEASE.jar:5.0.6.RELEASE]
+	... 39 common frames omitted
+
+

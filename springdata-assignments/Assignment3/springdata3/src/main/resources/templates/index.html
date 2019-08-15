@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+	var app = angular.module("myApp", []);
+
+	app.controller('myCtrl', function($scope, $http) {
+		
+		$scope.show1 = false;
+		$scope.show2 = false;
+		$scope.show3 = false;
+		$scope.show4 = false;
+
+		$scope.showAllCDs = function() {
+			$http.get('/showAllCDs').then(function(output) {
+				console.log(output.data);
+				$scope.cds1 = output.data;
+				$scope.show1 = true;
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+
+		$scope.showCDById = function() {
+			console.log($scope.searchId);
+			$http.get('/showCDById/' + $scope.cdId).then(
+					function(output) {
+						console.log(output.data);
+						$scope.cd = output.data;
+						$scope.show2 = true;
+					}, function(error) {
+						console.log("fail");
+					});
+		}
+		
+		$scope.showCDByTitle = function() {
+			console.log($scope.searchId);
+			$http.get('/showCDByTitle/' + $scope.cdTitle).then(
+					function(output) {
+						console.log(output.data);
+						$scope.cds2 = output.data;
+						$scope.show3 = true;
+					}, function(error) {
+						console.log("fail");
+					});
+		}
+		
+		$scope.showCDByPublisher = function() {
+			console.log($scope.searchId);
+			$http.get('/showCDByPublisher/' + $scope.cdPublisher).then(
+					function(output) {
+						console.log(output.data);
+						$scope.cds3 = output.data;
+						$scope.show4 = true;
+					}, function(error) {
+						console.log("fail");
+					});
+		}
+		
+		$scope.insertCD = function() {
+			var params = {};
+		    params.cdId = $scope.id;
+		    params.cdTitle = $scope.title;
+		    params.cdPrice = $scope.price;
+		    params.cdPublisher = $scope.publisher;
+			$http.post('/insertCD', {}, { params: params }).then(function(output) {
+				console.log(output);
+				$scope.id = "";
+				$scope.title = "";
+				$scope.price = "";
+				$scope.publisher = "";
+				alert("CD Inserted!");
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+		
+		$scope.updateCD = function() {
+			var params = {};
+		    params.cdId = $scope.id;
+		    params.cdTitle = $scope.title;
+		    params.cdPrice = $scope.price;
+		    params.cdPublisher = $scope.publisher;
+			$http.put('/updateCD', {}, { params: params }).then(function(output) {
+				console.log(output);
+				$scope.id = "";
+				$scope.title = "";
+				$scope.price = "";
+				$scope.publisher = "";
+				if (output.data > 0) {
+					alert("CD Updated!");
+				} else {
+					alert("CD not found!");
+				}
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+		
+		$scope.deleteCD = function() {
+			var params = {};
+		    params.cdId = $scope.cid;
+			$http.delete('/deleteCD', { params: params }).then(function(output) {
+				console.log(output);
+				alert("CD Deleted!");
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+	});
+</script>
+
+<title>Employee Management</title>
+</head>
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<h2>CD Stores</h2>
+		<hr />
+		
+		<h5>Add/Update CD</h5>
+		<hr />
+			<table border="0">
+				<tr>
+					<td>CD Id:</td>
+					<td><input type="text" ng-model="id" required /></td>
+				</tr>
+				<tr>
+					<td>CD Title:</td>
+					<td><input type="text" ng-model="title" required /></td>
+				</tr>
+				<tr>
+					<td>CD Price:</td>
+					<td><input type="number" ng-model="price" required /></td>
+				</tr>
+				<tr>
+					<td>CD Publisher:</td>
+					<td><input type="text" ng-model="publisher" required /></td>
+				</tr>
+				<tr>
+					<td><button
+							ng-click="insertCD()">Add</button></td>
+							<td><button
+							ng-click="updateCD()">Update</button></td>
+				</tr>
+			</table>
+		<hr />
+		<h5>Delete CD</h5>
+		<hr />
+		<p>
+			<input type="text" ng-model="cid">
+			<button ng-click="deleteCD()">Delete</button>
+		</p>
+		<hr />
+
+		<p>
+			<button ng-click="showAllCDs()">Show All CDs</button>
+		</p>
+		<div ng-show="show1">
+			<table border="1px">
+				<tr>
+					<th>CD Id</th>
+					<th>CD Title</th>
+					<th>CD Price</th>
+					<th>CD Publisher</th>
+				</tr>
+				<tr ng-repeat="cd in cds1">
+					<td>{{ cd.cdId }}</td>
+					<td>{{ cd.cdTitle }}</td>
+					<td>{{ cd.cdPrice }}</td>
+					<td>{{ cd.cdPublisher }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr />
+
+		<h5>Show CD By CD Id</h5>
+		<hr />
+
+		<p>
+			<input type="text" ng-model="cdId">
+			<button ng-click="showCDById()">Search</button>
+		</p>
+		<div ng-show="show2">
+			<table border="1px">
+				<tr>
+					<th>CD Id</th>
+					<th>CD Title</th>
+					<th>CD Price</th>
+					<th>CD Publisher</th>
+				</tr>
+				<tr>
+					<td>{{ cd.cdId }}</td>
+					<td>{{ cd.cdTitle }}</td>
+					<td>{{ cd.cdPrice }}</td>
+					<td>{{ cd.cdPublisher }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr />
+
+		<h5>Show CDs By Title</h5>
+		<hr />
+
+		<p>
+			<input type="text" ng-model="cdTitle">
+			<button ng-click="showCDByTitle()">Search</button>
+		</p>
+		<div ng-show="show3">
+			<table border="1px">
+				<tr>
+					<th>CD Id</th>
+					<th>CD Title</th>
+					<th>CD Price</th>
+					<th>CD Publisher</th>
+				</tr>
+				<tr ng-repeat="cd in cds2">
+					<td>{{ cd.cdId }}</td>
+					<td>{{ cd.cdTitle }}</td>
+					<td>{{ cd.cdPrice }}</td>
+					<td>{{ cd.cdPublisher }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr />
+
+		<h5>Show CDs By Publisher</h5>
+		<hr />
+
+		<p>
+			<input type="text" ng-model="cdPublisher">
+			<button ng-click="showCDByPublisher()">Search</button>
+		</p>
+		<div ng-show="show4">
+			<table border="1px">
+				<tr>
+					<th>CD Id</th>
+					<th>CD Title</th>
+					<th>CD Price</th>
+					<th>CD Publisher</th>
+				</tr>
+				<tr ng-repeat="cd in cds3">
+					<td>{{ cd.cdId }}</td>
+					<td>{{ cd.cdTitle }}</td>
+					<td>{{ cd.cdPrice }}</td>
+					<td>{{ cd.cdPublisher }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
