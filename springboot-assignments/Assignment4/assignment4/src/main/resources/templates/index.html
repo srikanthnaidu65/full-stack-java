@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+	var app = angular.module("myApp", []);
+
+	app.controller('myCtrl', function($scope, $http) {
+		
+		$scope.showOne = false;
+		$scope.showAll = false;
+
+		$scope.insertEmployee = function() {
+			var params = {};
+			params.empId = $scope.empId;
+			params.empName = $scope.empName;
+			params.email = $scope.email;
+			params.location = $scope.location;
+			$http.post('/insertEmployee', {}, {
+				params : params
+			}).then(function(output) {
+				console.log(output.data);
+				if (output.status == 200) {
+					$scope.empId = "";
+					$scope.empName = "";
+					$scope.email = "";
+					$scope.location = "";
+					alert("Employee created.");
+				}
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+
+		$scope.showAllEmployee = function() {
+			$http.get('/displayAll').then(function(output) {
+				console.log(output.data);
+				$scope.employees = output.data;
+				$scope.showAll = true;
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+
+		$scope.showEmployee = function() {
+			console.log($scope.searchId);
+			$http.get('/display/' + $scope.searchId).then(
+					function(output) {
+						console.log(output.data);
+						$scope.employee = output.data;
+						$scope.showOne = true;
+					}, function(error) {
+						console.log("fail");
+					});
+		}
+	});
+</script>
+
+<title>Employee Management</title>
+</head>
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<h2>Employee Registration</h2>
+		<hr />
+		<p>
+		<table border="0">
+			<tr>
+				<td>Employee Id:</td>
+				<td><input type="text" ng-model="empId" /></td>
+			</tr>
+
+			<tr>
+				<td>Employee Name:</td>
+				<td><input type="text" ng-model="empName" /></td>
+			</tr>
+
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" ng-model="email" /></td>
+			</tr>
+
+			<tr>
+				<td>Location:</td>
+				<td><input type="text" ng-model="location" /></td>
+			</tr>
+
+			<tr>
+				<td><button ng-click="insertEmployee()">Submit</button></td>
+				<td><input type="reset" value="Reset" /></td>
+			</tr>
+
+		</table>
+
+		<hr />
+		<h2>Search Employee</h2>
+		<hr />
+
+		<p>
+			<input type="text" ng-model="searchId">
+			<button ng-click="showEmployee()">Search Employee</button>
+		</p>
+		<div ng-show="showOne">
+			<table border="1px">
+				<tr>
+					<th>Employee Id</th>
+					<th>Employee name</th>
+					<th>Email</th>
+					<th>Location</th>
+				</tr>
+				<tr>
+					<td>{{ employee.empId }}</td>
+					<td>{{ employee.empName }}</td>
+					<td>{{ employee.email }}</td>
+					<td>{{ employee.location }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr />
+		<p>
+		<h2>Show All Employees</h2>
+		<hr />
+		</p>
+
+		<p>
+			<button ng-click="showAllEmployee()">Show All Employees</button>
+		</p>
+		<div ng-show="showAll">
+			<table border="1px">
+				<tr>
+					<th>Employee Id</th>
+					<th>Employee name</th>
+					<th>Email</th>
+					<th>Location</th>
+				</tr>
+				<tr ng-repeat="emp in employees">
+					<td>{{ emp.empId }}</td>
+					<td>{{ emp.empName }}</td>
+					<td>{{ emp.email }}</td>
+					<td>{{ emp.location }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
