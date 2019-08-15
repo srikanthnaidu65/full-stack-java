@@ -3,7 +3,7 @@ Final Project for Java Full Stack Developer:
 
 ## Application Name: Online Account Management System
 
-- Srikanth Sambirli (SR20000959)
+- Srikanth Sambirli
 - Java Full Stack Developer
 - Bangalore, India
 
