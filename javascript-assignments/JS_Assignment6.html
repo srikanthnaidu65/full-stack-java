@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 6</title>
+</head>
+<body>
+	<h2 style="text-align: center; color: blue">Google Test Page</h2>
+	<center>
+		<img src="google.jpeg" width="300px" height="200px" alt="google"
+			onclick="openWindow()" /><br>
+		<br>
+		<button type="close" onclick="closeWindow()">Close</button>
+	</center>
+
+	<script>
+		function openWindow() {
+			gw = window.open("https://www.google.co.in");
+		}
+
+		function closeWindow() {
+			if (!gw.closed) {
+				gw.close();
+			} else {
+				alert("Google window was already closed!");
+			}
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 5</title>
+</head>
+
+<body>
+	Given Input Array:
+	<span id="input"></span>
+	<br>
+	<br> Bubble Sort:
+	<span id="bubblesort"></span>
+	<br>
+	<br> Quick Sort:
+	<span id="quicksort"></span>
+
+	<script>
+		function quickSort(origArray) {
+			if (origArray.length <= 1) {
+				return origArray;
+			} else {
+				var left = [];
+				var right = [];
+				var newArray = [];
+				var pivot = origArray.pop();
+				var length = origArray.length;
+
+				for (var i = 0; i < length; i++) {
+					if (origArray[i] <= pivot) {
+						left.push(origArray[i]);
+					} else {
+						right.push(origArray[i]);
+					}
+				}
+				return newArray
+						.concat(quickSort(left), pivot, quickSort(right));
+			}
+		}
+
+		function bubbleSort(items) {
+			var length = items.length;
+			for (var i = 0; i < length; i++) {
+				for (var j = 0; j < (length - i - 1); j++) {
+					if (items[j] > items[j + 1]) {
+						var tmp = items[j];
+						items[j] = items[j + 1];
+						items[j + 1] = tmp;
+					}
+				}
+			}
+			return items;
+		}
+
+		var inputArray = [ 100, 95, 43, 1, 54, -6, 6, 44, 99, 4 ];
+		document.getElementById("input").innerHTML = inputArray;
+		document.getElementById("bubblesort").innerHTML = bubbleSort(inputArray);
+		document.getElementById("quicksort").innerHTML = quickSort(inputArray);
+	</script>
+</body>
+</html>

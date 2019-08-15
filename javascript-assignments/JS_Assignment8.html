@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 8</title>
+</head>
+
+<body onload="showDetails()">
+
+	<form>
+		<table border="0">
+			<tr>
+				<td>Cities</td>
+				<td><select id="cities">
+						<option value="Bangalore">Bangalore</option>
+						<option value="Hyderabad">Hyderabad</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Chennai">Chennai</option>
+						<option value="Mumbai">Mumbai</option>
+						<option value="Kolkata">Kolkata</option>
+				</select></td>
+			</tr>
+		</table>
+	</form>
+
+	<script>
+		function showDetails() {
+			var len = document.getElementById("cities").options.length;
+			var value = "\n";
+			for (var i = 0; i < len; i++) {
+				value = value
+						+ document.getElementById("cities").options[i].text
+						+ "\n";
+			}
+			window.alert("Total Cities in drop-down: " + len
+					+ "\nCities in the drop-down: " + value);
+		}
+	</script>
+</body>
+</html>

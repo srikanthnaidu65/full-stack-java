@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 3</title>
+</head>
+
+<body>
+	<h1>Circles in the Diagonal</h1>
+	<hr>
+	<canvas id="circle" width="700" height="800">
+</canvas>
+
+	<script>
+		function drawCircle() {
+			var ctx = document.getElementById("circle").getContext("2d");
+			var c = 1;
+			for (var i = 1; i <= 5; i++) {
+				for (var j = 1; j <= 5; j++) {
+					ctx.fillStyle = "rgb(" + Math.floor(240 - 200 * i) + ","
+							+ Math.floor(255 - 45 * i) + ","
+							+ Math.floor(250 - 45 * j) + ")";
+					ctx.beginPath();
+					if (i === c && j === c) {
+						ctx.arc(25 + j * 60, 30 + i * 60, 30, 0, Math.PI * 2,
+								true);
+						ctx.fill();
+						ctx.stroke();
+					}
+				}
+				c++;
+			}
+		}
+		drawCircle();
+	</script>
+</body>
+</html>

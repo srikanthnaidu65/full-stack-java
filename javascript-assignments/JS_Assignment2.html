@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 2</title>
+</head>
+<body>
+
+	<p>Click the buttons to sort by key.</p>
+
+	<button onclick="idSort()">ID Sort</button>
+	<button onclick="nameSort()">Name Sort</button>
+	<button onclick="salarySort()">Salary Sort</button>
+	<br>
+	<br>
+	<table id="empTable" border="1">
+	</table>
+
+	<script>
+		var employees = [ {
+			id : 50,
+			name : "srikanth",
+			salary : 50000
+		}, {
+			id : 15,
+			name : "rahul",
+			salary : 10000
+		}, {
+			id : 100,
+			name : "anand",
+			salary : 90000
+		}, {
+			id : 95,
+			name : "zameer",
+			salary : 8000
+		}, {
+			id : 45,
+			name : "ravi",
+			salary : 65000
+		} ];
+
+		displayEmployees();
+
+		function idSort() {
+			employees.sort(function(a, b) {
+				return a.id - b.id
+			});
+			displayEmployees();
+		}
+
+		function nameSort() {
+			employees.sort(function(a, b) {
+				var x = a.name.toUpperCase();
+				var y = b.name.toUpperCase();
+				if (x < y) {
+					return -1;
+				}
+				if (x > y) {
+					return 1;
+				}
+				return 0;
+			});
+			displayEmployees();
+		}
+
+		function salarySort() {
+			employees.sort(function(a, b) {
+				return a.salary - b.salary
+			});
+			displayEmployees();
+		}
+
+		function displayEmployees() {
+			var table = document.getElementById("empTable");
+			table.innerHTML = "";
+			var row = table.insertRow(0);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			cell1.innerHTML = "<b>ID</b>";
+			cell2.innerHTML = "<b>Name</b>";
+			cell3.innerHTML = "<b>Salary</b>";
+			var i;
+			for (i = 0; i < employees.length; i++) {
+				var row = table.insertRow(-1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				cell1.innerHTML = employees[i].id;
+				cell2.innerHTML = employees[i].name;
+				cell3.innerHTML = employees[i].salary;
+			}
+		}
+	</script>
+
+</body>
+</html>

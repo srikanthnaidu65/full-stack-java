@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 3</title>
+</head>
+<body>
+
+	<h3>
+		Parsing URL: <span id="url"></span>
+	</h3>
+	Protocol:
+	<span id="protocol"></span>
+	<br> Host:
+	<span id="host"></span>
+	<br> Port:
+	<span id="port"></span>
+	<br> Path:
+	<span id="path"></span>
+	<br> Query String:
+	<span id="query"></span>
+	<br>
+
+	<script>
+		var link = "http://localhost:8080/search?name=srikanth";
+		var url = new URL(link);
+		document.getElementById("url").innerHTML = link;
+		document.getElementById("protocol").innerHTML = url.protocol;
+		document.getElementById("port").innerHTML = url.port;
+		document.getElementById("host").innerHTML = url.hostname;
+		document.getElementById("path").innerHTML = url.pathname;
+		document.getElementById("query").innerHTML = url.search;
+	</script>
+
+</body>
+</html>

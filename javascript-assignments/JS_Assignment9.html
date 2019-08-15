@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 9</title>
+
+</head>
+<body>
+	<center>
+		<img src="bigben.jpg" width="300px" height="150px" id="image1"
+			onmouseover="mouseOver1()" onmouseout="mouseOut1()" /> <br>
+		<br> <img src="stone.jpg" width="300px" height="150px"
+			id="image2" onmouseover="mouseOver2()" onmouseout="mouseOut2()" /> <br>
+		<br> <img src="shard.jpg" width="300px" height="150px"
+			id="image3" onmouseover="mouseOver3()" onmouseout="mouseOut3()" />
+	</center>
+
+
+	<script>
+		function mouseOver1() {
+			document.getElementById("image1").src = "saintpauls.jpg";
+		}
+
+		function mouseOut1() {
+			document.getElementById("image1").src = "bigben.jpg";
+		}
+		
+		function mouseOver2() {
+			document.getElementById("image2").src = "saintpauls.jpg";
+		}
+
+		function mouseOut2() {
+			document.getElementById("image2").src = "stone.jpg";
+		}
+		
+		function mouseOver3() {
+			document.getElementById("image3").src = "saintpauls.jpg";
+		}
+
+		function mouseOut3() {
+			document.getElementById("image3").src = "shard.jpg";
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 1</title>
+
+<script>
+	function showClock() {
+		var date = new Date();
+		var hour = date.getHours();
+		var minutes = date.getMinutes();
+		var seconds = date.getSeconds();
+		var ampm = (hour < 12) ? "AM" : "PM";
+		minutes = (minutes < 10 ? "0" : "") + minutes;
+		seconds = (seconds < 10 ? "0" : "") + seconds;
+		document.getElementById('clock').innerHTML = hour + ":" + minutes + ":"
+				+ seconds + " " + ampm;
+		var time = setTimeout(showClock, 500);
+	}
+</script>
+</head>
+
+<body onload="showClock()">
+	<table>
+		<tr>
+			<td>Current Time is:</td>
+			<td id="clock"></td>
+		</tr>
+	</table>
+</body>
+</html>

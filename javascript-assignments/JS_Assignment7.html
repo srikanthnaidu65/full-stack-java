@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 7</title>
+
+</head>
+<body onload="startTimer()">
+	<h2 style="text-align: center; color: orange">Places To Visit in
+		London</h2>
+	<center>
+		<img src="bigben.jpg" width="600px" height="400px" id="image" /> <br>
+		<br>
+		<button type="previous" onclick="showPrevious()" id="prevbtn">Previous</button>
+		<button type="next" onclick="showNext()" id="nextbtn">Next</button>
+	</center>
+
+	<script>
+		var images = [ "bigben.jpg", "londoneye.jpg", "saintpauls.jpg",
+				"shard.jpg", "stone.jpg", "towerbridge.jpg" ];
+		var len = images.length;
+		var currentImage = 0;
+		showButton();
+
+		function startTimer() {
+			setInterval(showNext, 3000);
+		}
+
+		function showButton() {
+			if (getCurrentImagePosition() == 0) {
+				document.getElementById("prevbtn").style.visibility = 'hidden';
+			} else if (getCurrentImagePosition() == len - 1) {
+				document.getElementById("nextbtn").style.visibility = 'hidden';
+			} else if (getCurrentImagePosition() > 0
+					&& getCurrentImagePosition() != len - 1) {
+				document.getElementById("prevbtn").style.visibility = 'visible';
+				document.getElementById("nextbtn").style.visibility = 'visible';
+			}
+		}
+
+		function showPrevious() {
+			currentImage = getCurrentImagePosition();
+			if (currentImage != 0) {
+				currentImage--;
+				document.getElementById("image").src = images[currentImage];
+			}
+			showButton();
+		}
+
+		function showNext() {
+			currentImage = getCurrentImagePosition();
+			if (currentImage < (len - 1)) {
+				currentImage++;
+				document.getElementById("image").src = images[currentImage];
+			}
+			showButton();
+		}
+
+		function getCurrentImagePosition() {
+			var imgPath = document.getElementById("image").src;
+			for (var i = 0; i < len; i++) {
+				if (imgPath.includes(images[i])) {
+					imgPosition = i;
+				}
+			}
+			return imgPosition;
+		}
+	</script>
+
+</body>
+</html>

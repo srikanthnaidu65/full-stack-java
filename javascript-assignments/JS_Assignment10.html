@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS - Assignment 10</title>
+</head>
+
+<body>
+	Input Array Elements:
+	<span id="elements"></span>
+	<br>
+	<br> Number of Elements:
+	<span id="n"></span>
+	<br>
+	<br> Elements to be displayed:
+	<span id="final"></span>
+	<script>
+		var elements = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+		var p = prompt("Enter number of elements to be displayed", "");
+		document.getElementById("n").innerHTML = p;
+		document.getElementById("elements").innerHTML = elements;
+
+		function getElements() {
+			if (p == null) {
+				return elements[elements.length - 1];
+			} else {
+				return elements.slice(Math.max(elements.length - p, 0));
+			}
+		}
+		document.getElementById("final").innerHTML = getElements();
+	</script>
+
+</body>
+</html>
