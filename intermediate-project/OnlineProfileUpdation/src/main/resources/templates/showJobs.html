@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Search Jobs</title>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" >
+<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+</div>
+	<hr>
+<div align="right">
+<nav>
+	<a style="color:blue" href="/employee/employeeHome">Home</a> |
+	<a style="color:blue" href="/employee/addProfile">Add Profile</a> |
+	<a style="color:blue" href="/employee/modifyProfile">Modify Profile</a> |
+	<a style="color:blue" href="/employee/deleteProfile">Delete Profile</a> |
+	<a style="color:blue" href="/employee/profileUpload">Upload Profile</a> |
+	<a style="color:blue" href="/employee/searchJob">Search Job Details</a> |
+	<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+</nav>
+</div>
+<br>
+<div align="center">
+<b>Search Job('s)</b>
+<br><br>
+<form>
+<table>
+<tr>
+<td><input type="radio" name="jobSearch" value="findJobsBySkill" onclick="findBySkill()" />By Skill</td>
+<td><input type="radio" name="jobSearch" value="findJobsByLoc" onclick="findByLoc()" />By Location</td>
+<td><input type="radio" name="jobSearch" value="findJobsByExp" onclick="findByExp()" />By Experience</td>
+</tr>
+</table>
+</form>
+<br>
+<div id="findJobsBySkill" display="none">
+<form action="/employee/showJobsBySkill" method="get">
+Search: <input type="text" name="skill" placeholder="Enter Skill" required="required"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+
+<div id="findJobsByLoc" display="none">
+<form action="/employee/showJobsByLocation" method="get">
+Search: <input type="text" name="location" placeholder="Enter Location" required="required"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+
+<div id="findJobsByExp" display="none">
+<form action="/employee/showJobsByExperience" method="get">
+Search: <input type="number" name="experience" placeholder="Enter Total Experience" required="required"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+<br>
+<div th:if="${jobs != null}">
+<span id="info" style="color:green" th:text="${succMsg}"></span>
+<table border="1">
+<tr>
+<th>Job Id</th>
+<th>Job Name</th>
+<th>Job Description</th>
+<th>Project Name</th>
+<th>Skills Required</th>
+<th>Optional Skills</th>
+<th>Location</th>
+<th>Employee Band</th>
+<th>Experience</th>
+<th>Total Positions</th>
+<th>Contact Number</th>
+<th>Contact Email</th>
+</tr>
+   <th:block th:each="job : ${jobs}">
+      <tr>
+         <td th:text="${job.jobId}" />
+         <td th:text="${job.jobName}" />
+         <td th:text="${job.jobDescription}" />
+         <td th:text="${job.projectName}" />
+         <td th:text="${job.requiredSkills}" />
+         <td th:text="${job.optionalSkills}" />
+         <td th:text="${job.location}" />
+         <td th:text="${job.employeeBand}" />
+         <td th:text="${job.experience}" />
+         <td th:text="${job.positions}" />
+         <td th:text="${job.contactNumber}" />
+         <td th:text="${job.emailId}" />
+      </tr>
+   </th:block>
+</table>
+</div>
+<span id="err" style="color:red" th:text="${errMsg}"></span>
+</div>
+
+<script type="text/javascript">
+window.history.forward();
+function noBack() {
+	window.history.forward();
+	init();
+}
+
+function findBySkill() {
+	
+	var x = document.getElementById("findJobsBySkill");
+		x.style.display = "block";
+	
+	document.getElementById("findJobsByLoc").style.display="none";
+	document.getElementById("findJobsByExp").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function findByLoc() {
+	
+	var x= document.getElementById("findJobsByLoc");
+		x.style.display = "block";
+	
+	document.getElementById("findJobsBySkill").style.display="none";
+	document.getElementById("findJobsByExp").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function findByExp() {
+	
+	var x= document.getElementById("findJobsByExp");
+		x.style.display = "block";
+	
+	document.getElementById("findJobsBySkill").style.display="none";
+	document.getElementById("findJobsByLoc").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function init() {
+	document.getElementById("findJobsByExp").style.display ="none";	
+	document.getElementById("findJobsBySkill").style.display="none";
+	document.getElementById("findJobsByLoc").style.display="none";
+}
+</script> 
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Search Profiles</title>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" >
+<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+</div>
+	<hr>
+<div align="right">
+<nav>
+	<a style="color:blue" href="/admin/adminHome">Home</a> |
+	<a style="color:blue" href="/admin/addJob">Add Job</a> |
+	<a style="color:blue" href="/admin/modifyJob">Modify Job</a> |
+	<a style="color:blue" href="/admin/deleteJob">Delete Job</a> |
+	<a style="color:blue" href="/admin/showProfile">View Profile</a> |
+	<a style="color:blue" href="/admin/downloadProfile">Download Resume</a> |
+	<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+</nav>
+</div>
+<div align="center">
+<br>
+<b>Search Profile('s)</b>
+<br><br>
+
+<form>
+<table>
+<tr>
+<td><input type="radio" name="jobSearch" value="findByName" onclick="findByName()" /> Search By Name</td>
+<td><input type="radio" name="jobSearch" value="findBySkill" onclick="findBySkill()" /> Search By Skill</td>
+<td><input type="radio" name="jobSearch" value="findByLoc" onclick="findByLoc()" /> Search By Location</td>
+<td><input type="radio" name="jobSearch" value="findByExp" onclick="findByExp()" />Search By Experience</td>
+</tr>
+</table>
+</form>
+<br>
+<div id="findByName">
+<form action="/admin/showProfilesByName" method="get">
+Search: <input type="text" name="firstName" placeholder="Enter First Name"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+
+<div id="findBySkill" display="none">
+<form action="/admin/showProfilesBySkill" method="get">
+Search: <input type="text" name="skill" placeholder="Enter Skill"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+
+<div id="findByLoc" display="none">
+<form action="/admin/showProfilesByLocation" method="get">
+Search: <input type="text" name="location" placeholder="Enter Location"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+
+<div id="findByExp" display="none">
+<form action="/admin/showProfilesByExpereince" method="get">
+Search: <input type="text" name="expereince" placeholder="Enter Expereince"/>
+<input type="submit" value="Find"/>
+</form>
+</div>
+<br>
+<div th:if="${profiles != null}">
+<span id="info" style="color:green" th:text="${succMsg}"></span>
+<table border="1">
+<tr>
+<th>Profile Id</th>
+<th>User Id</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Skills Set</th>
+<th>Location</th>
+<th>DOB</th>
+<th>Qualification</th>
+<th>Experience</th>
+<th>Gender</th>
+<th>Phone Number</th>
+<th>Email Id</th>
+</tr>
+   <th:block th:each="profile : ${profiles}">
+      <tr>
+         <td th:text="${profile.profileId}" />
+         <td th:text="${profile.userId}" />
+         <td th:text="${profile.firstName}" />
+         <td th:text="${profile.lastName}" />
+         <td th:text="${profile.skillSet}" />
+         <td th:text="${profile.location}" />
+         <td th:text="${profile.dob}" />
+         <td th:text="${profile.qualification}" />
+         <td th:text="${profile.experience}" />
+         <td th:text="${profile.gender}" />
+         <td th:text="${profile.phoneNumber}" />
+         <td th:text="${profile.emailId}" />
+      </tr>
+   </th:block>
+</table>
+</div>
+<span id="err" style="color:red" th:text="${errMsg}"></span>
+</div>
+
+<script type="text/javascript">
+window.history.forward();
+function noBack() {
+	window.history.forward();
+	init();
+}
+
+function findByName() {
+	var x= document.getElementById("findByName");
+		x.style.display = "block";
+	
+	document.getElementById("findBySkill").style.display="none";
+	document.getElementById("findByLoc").style.display="none";
+	document.getElementById("findByExp").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function findBySkill() {
+	var x= document.getElementById("findBySkill");
+		x.style.display = "block";
+	
+	document.getElementById("findByName").style.display="none";
+	document.getElementById("findByLoc").style.display="none";
+	document.getElementById("findByExp").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function findByLoc() {
+	var x= document.getElementById("findByLoc");
+		x.style.display = "block";
+	
+	document.getElementById("findBySkill").style.display="none";
+	document.getElementById("findByName").style.display="none";
+	document.getElementById("findByExp").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function findByExp() {
+	var x= document.getElementById("findByExp");
+		x.style.display = "block";
+	
+	document.getElementById("findBySkill").style.display="none";
+	document.getElementById("findByLoc").style.display="none";
+	document.getElementById("findByName").style.display="none";
+	document.getElementById("info").style.display="none";
+	document.getElementById("err").style.display="none";
+}
+
+function init() {
+	document.getElementById("findByExp").style.display ="none";	
+	document.getElementById("findBySkill").style.display="none";
+	document.getElementById("findByLoc").style.display="none";
+	document.getElementById("findByName").style.display="none";
+}
+</script> 
+</body>
+</html>

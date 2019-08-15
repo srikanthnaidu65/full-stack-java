@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Employee Home</title>
+
+<script type="text/javascript">
+window.history.forward();
+function noBack() {
+	window.history.forward();
+}
+</script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" >
+<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+</div>
+	<hr>
+<div align="right">
+<nav>
+	<a style="color:blue" href="/employee/employeeHome">Home</a> |
+	<a style="color:blue" href="/employee/addProfile">Add Profile</a> |
+	<a style="color:blue" href="/employee/modifyProfile">Modify Profile</a> |
+	<a style="color:blue" href="/employee/deleteProfile">Delete Profile</a> |
+	<a style="color:blue" href="/employee/profileUpload">Upload Profile</a> |
+	<a style="color:blue" href="/employee/searchJob">Search Job Details</a> |
+	<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+</nav>
+</div>
+<br>
+<span style="color:green" th:text="${msg}"></span><br>
+<span style="color:green" th:text="${profMsg}"></span>
+</body>
+</html>

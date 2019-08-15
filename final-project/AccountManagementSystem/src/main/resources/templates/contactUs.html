@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Contact Us</title>
+</head>
+<body>
+	<div align="center">
+		<img src="../static/images/titlelogo.jpg"
+			th:src="@{/images/bank_logo.jpg}" width="200" height="150" /> <img
+			src="../static/images/titletext.png"
+			th:src="@{/images/bank_title.JPG}" width="400" height="100" />
+	</div>
+	<hr>
+	<div align="right">
+		<nav>
+			<a style="color:blue" href="/user/userHome">Home</a> |
+			<a style="color:blue" href="/user/modifyProfile">Modify Profile</a> |
+			<a style="color:blue" href="/user/checkBalance">Check Balance</a> |
+			<a style="color:blue" href="/user/transferFunds">Transfer Funds</a> |
+			<a style="color:blue" href="/user/transactionSummary">Transaction Summary</a> |
+			<a style="color:blue" href="/user/contactUs">Contact Us</a> |
+			<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+		</nav>
+	</div>
+	<br>
+	<br>
+	<div>Contact us at</div>
+	<div style="color: green">
+		Phone Number: 9959656462<br>
+		Email: srikanth.naidu65@gmail.com
+	</div>
+</body>
+</html>

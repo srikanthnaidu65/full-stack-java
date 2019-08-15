@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Funds Transfer</title>
+
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+</script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();"
+	onunload="">
+	<div align="center">
+		<img src="../static/images/titlelogo.jpg"
+			th:src="@{/images/bank_logo.jpg}" width="200" height="150" /> <img
+			src="../static/images/titletext.png"
+			th:src="@{/images/bank_title.JPG}" width="400" height="100" />
+	</div>
+	<hr>
+	<div align="right">
+		<nav>
+			<a style="color:blue" href="/user/userHome">Home</a> |
+			<a style="color:blue" href="/user/modifyProfile">Modify Profile</a> |
+			<a style="color:blue" href="/user/checkBalance">Check Balance</a> |
+			<a style="color:blue" href="/user/transferFunds">Transfer Funds</a> |
+			<a style="color:blue" href="/user/transactionSummary">Transaction Summary</a> |
+			<a style="color:blue" href="/user/contactUs">Contact Us</a> |
+			<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+		</nav>
+	</div>
+	<br>
+	<div align="center">
+		<b>Transfer Funds</b> <br>
+		<br>
+		<div th:if="${accounts != null}">
+			<form action="/user/fundsTransfer" method="post">
+				<table>
+					<tr>
+						<td>From Account</td>
+						<td><select id="fromAccount" name="fromAccount">
+								<option th:each="account : ${accounts}"
+									th:value="${account.userAccountDetails.accountNumber}"
+									th:text="${account.bankName}+' - '+${account.userAccountDetails.accountNumber}"></option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>To Account</td>
+						<td><select id="toAccount" name="toAccount">
+								<option th:each="account : ${accounts}"
+									th:value="${account.userAccountDetails.accountNumber}"
+									th:text="${account.bankName}+' - '+${account.userAccountDetails.accountNumber}"></option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>Description</td>
+						<td><input type="text" name="description"
+							placeholder="Enter Description" required="required" /></td>
+					</tr>
+					<tr>
+						<td>Amount</td>
+						<td><input type="number" name="amount" min="0" step="any"
+							placeholder="Enter Amount" required="required" /></td>
+					</tr>
+					<tr>
+					<tr>
+						<td><input type="submit" value="Transfer" /></td>
+						<td><input type="reset" value="Reset" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<span style="color: red" th:text="${errMsg}"></span> <span
+			style="color: green" th:text="${succMsg}"></span>
+	</div>
+</body>
+</html>

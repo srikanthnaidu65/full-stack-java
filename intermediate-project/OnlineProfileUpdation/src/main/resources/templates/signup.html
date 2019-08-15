@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Registration of New Employee</title>
+</head>
+<body>
+	<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+	<hr>
+	<br>
+		<form action="/user/saveUserDetails" method="post" modelAttribute="user">
+			<table>
+				<tr>
+					<td>User Id</td>
+					<td><input type="text" name="userId"
+						placeholder="Enter User Id " required /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password"
+						placeholder="Enter Password" required /></td>
+				</tr>
+				<tr>
+					<td>User Type</td>
+					<td><select name="userType">
+						<option value="Admin">Admin
+						<option value="Employee">Employee
+						</select></td>
+				<tr>
+					<td><input type="submit" value="Register" /></td>
+					<td><input type="reset" value="Reset" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<a href="/"><font color="blue">Login Page</font></a>
+</body>
+</html>

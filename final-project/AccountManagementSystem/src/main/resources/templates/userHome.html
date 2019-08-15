@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>User Home</title>
+
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+</script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();"
+	onunload="">
+	<div align="center">
+		<img src="../static/images/titlelogo.jpg"
+			th:src="@{/images/bank_logo.jpg}" width="200" height="150" /> <img
+			src="../static/images/titletext.png"
+			th:src="@{/images/bank_title.JPG}" width="400" height="100" />
+	</div>
+	<hr>
+	<div align="right">
+		<nav>
+			<a style="color:blue" href="/user/userHome">Home</a> |
+			<a style="color:blue" href="/user/modifyProfile">Modify Profile</a> |
+			<a style="color:blue" href="/user/checkBalance">Check Balance</a> |
+			<a style="color:blue" href="/user/transferFunds">Transfer Funds</a> |
+			<a style="color:blue" href="/user/transactionSummary">Transaction Summary</a> |
+			<a style="color:blue" href="/user/contactUs">Contact Us</a> |
+			<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+		</nav>
+	</div>
+	<br>
+	<span style="color: green" th:text="${msg}"></span>
+	<br>
+	<span style="color: green" th:text="${profMsg}"></span>
+	<span style="color: red" th:text="${errMsg}"></span>
+	<span style="color: green" th:text="${succMsg}"></span>
+</body>
+</html>

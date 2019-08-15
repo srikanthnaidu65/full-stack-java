@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Delete Job</title>
+
+<script type="text/javascript">
+window.history.forward();
+function noBack() {
+	window.history.forward();
+}
+</script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" >
+<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+</div>
+	<hr>
+<div align="right">
+<nav>
+	<a style="color:blue" href="/admin/adminHome">Home</a> |
+	<a style="color:blue" href="/admin/addJob">Add Job</a> |
+	<a style="color:blue" href="/admin/modifyJob">Modify Job</a> |
+	<a style="color:blue" href="/admin/deleteJob">Delete Job</a> |
+	<a style="color:blue" href="/admin/showProfile">View Profile</a> |
+	<a style="color:blue" href="/admin/downloadProfile">Download Resume</a> |
+	<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+</nav>
+</div>
+<br>
+<div align="center">
+<b>Delete Job</b>
+<br><br>
+<form action="/admin/deleteJobDetail">
+<table>
+<tr>
+<td>Job Id</td>
+<td><input type="number" name="jobId"  min="1" placeholder="Enter Job Id"/></td>
+</tr>
+<tr>
+<td><input type="submit" value="Delete"/></td>
+<td><input type="reset" value="Reset"/></td>
+</tr>
+</table>
+</form>
+<span style="color:red" th:text="${errMsg}"></span>
+<span style="color:green" th:text="${succMsg}"></span>
+</div>
+</body>
+</html>

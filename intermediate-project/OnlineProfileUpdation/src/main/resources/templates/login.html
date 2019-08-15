@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Login Page</title>
+
+<style type="text/css">
+    .footer {
+        text-align: center;
+    }
+    </style>
+</head>
+<body onload="forwardPage();">
+<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+	<hr>
+	<br>
+		<form method="post" action="/user/login"  modelAttribute="user">
+			<table>
+				<tr>
+					<td>User Id</td>
+					<td><input type="text" name="userId" placeholder="Enter User Id"
+						required="required" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password"
+						placeholder="Enter Password" required /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Login" /></td>
+					<td><input type="reset" value="Reset" /></td>
+				</tr>
+			</table>
+		</form>
+		<span style="color:red" th:text="${msg}"></span>
+		<span style="color:red" th:text="${secureMsg}"></span>
+	</div>
+
+	New User? <a href="/user/signup"><font color="blue">Register</font></a>
+</body>
+</html>

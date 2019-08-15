@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Login Page</title>
+
+<style type="text/css">
+.footer {
+	text-align: center;
+}
+</style>
+</head>
+<body onload="forwardPage();">
+	<div align="center">
+		<img src="../static/images/titlelogo.jpg"
+			th:src="@{/images/bank_logo.jpg}" width="200" height="150" /> <img
+			src="../static/images/titletext.png"
+			th:src="@{/images/bank_title.JPG}" width="400" height="100" />
+		<hr>
+		<br>
+		<form method="post" action="/user/login">
+			<table>
+				<tr>
+					<td>User Id</td>
+					<td><input type="text" name="userId"
+						placeholder="Enter User Id" required="required" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password"
+						placeholder="Enter Password" required /></td>
+				</tr>
+				<tr>
+					<td>Bank Name</td>
+					<td><select name="bankName">
+							<option value="SBI">SBI
+							<option value="HDFC">HDFC
+							<option value="ICICI">ICICI
+					</select></td>
+				<tr>
+				<tr>
+					<td><input type="submit" value="Login" /></td>
+					<td><input type="reset" value="Reset" /></td>
+				</tr>
+			</table>
+		</form>
+		<span style="color: red" th:text="${msg}"></span> <span
+			style="color: red" th:text="${secureMsg}"></span>
+	</div>
+</body>
+</html>

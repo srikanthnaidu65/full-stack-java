@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Transaction Summary</title>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();"
+	onunload="">
+	<div align="center">
+		<img src="../static/images/titlelogo.jpg"
+			th:src="@{/images/bank_logo.jpg}" width="200" height="150" /> <img
+			src="../static/images/titletext.png"
+			th:src="@{/images/bank_title.JPG}" width="400" height="100" />
+	</div>
+	<hr>
+	<div align="right">
+		<nav>
+			<a style="color:blue" href="/user/userHome">Home</a> |
+			<a style="color:blue" href="/user/modifyProfile">Modify Profile</a> |
+			<a style="color:blue" href="/user/checkBalance">Check Balance</a> |
+			<a style="color:blue" href="/user/transferFunds">Transfer Funds</a> |
+			<a style="color:blue" href="/user/transactionSummary">Transaction Summary</a> |
+			<a style="color:blue" href="/user/contactUs">Contact Us</a> |
+			<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+		</nav>
+	</div>
+	<br>
+	<div align="center">
+		<b>Transaction Summary</b> <br>
+		<br>
+
+		<form action="/user/searchTransactions" method="post">
+			<table>
+				<tr>
+					<td>From Account</td>
+					<td><select id="accountNumber" name="accountNumber">
+							<option th:each="account : ${accounts}"
+								th:value="${account.userAccountDetails.accountNumber}"
+								th:text="${account.bankName}+' - '+${account.userAccountDetails.accountNumber}"></option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>From Date:</td>
+					<td><input type="text" id="fromDate" th:value=${value}
+						name="fromDate" placeholder="Enter From Date(dd/MM/YYYY))"
+						required="required" /></td>
+				</tr>
+				<tr>
+					<td>To Date:</td>
+					<td><input type="text" name="toDate"
+						placeholder="Enter To Date(dd/MM/YYYY))" required="required" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Search" /></td>
+					<td><input type="reset" value="Reset" /></td>
+				</tr>
+			</table>
+		</form>
+
+		<br>
+		<br>
+		<div th:if="${transactions != null}">
+			<table border="1">
+				<tr>
+					<th>Date</th>
+					<th>Account Number</th>
+					<th>Narration</th>
+					<th>Chq. / Ref No.</th>
+					<th>Value Date</th>
+					<th>Withdrawal Amount*</th>
+					<th>Deposit Amount*</th>
+					<th>Closing Balance*</th>
+				</tr>
+				<th:block th:each="transaction : ${transactions}">
+					<tr>
+						<td th:text="${transaction.updatedDateTime}" />
+						<td th:text="${transaction.accountNumber}" />
+						<td th:text="${transaction.transactionDescription}" />
+						<td th:text="${transaction.transactionId}" />
+						<td th:text="${transaction.updatedDateTime}" />
+						<td
+							th:text="${transaction.debitCreditInd} == 'Debit' ? ${transaction.amount} : 0" />
+						<td
+							th:text="${transaction.debitCreditInd} == 'Credit' ? ${transaction.amount} : 0" />
+						<td th:text="${transaction.closingBalance}" />
+					</tr>
+				</th:block>
+			</table>
+		</div>
+		<span id="err" style="color: red" th:text="${errMsg}"></span>
+	</div>
+	<br>
+	<div style="color: red; text-align: right"
+		th:if="${transactions != null}">
+		<span>*All Figures in Rupees</span>
+	</div>
+
+	<script type="text/javascript">
+window.history.forward();
+function noBack() {
+	window.history.forward();
+	init();
+}
+</script>
+</body>
+</html>

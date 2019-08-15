@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Modify User Profile</title>
+
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+</script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();"
+	onunload="">
+	<div align="center">
+		<img src="../static/images/titlelogo.jpg"
+			th:src="@{/images/bank_logo.jpg}" width="200" height="150" /> <img
+			src="../static/images/titletext.png"
+			th:src="@{/images/bank_title.JPG}" width="400" height="100" />
+	</div>
+	<hr>
+	<div align="right">
+		<nav>
+			<a style="color:blue" href="/user/userHome">Home</a> |
+			<a style="color:blue" href="/user/modifyProfile">Modify Profile</a> |
+			<a style="color:blue" href="/user/checkBalance">Check Balance</a> |
+			<a style="color:blue" href="/user/transferFunds">Transfer Funds</a> |
+			<a style="color:blue" href="/user/transactionSummary">Transaction Summary</a> |
+			<a style="color:blue" href="/user/contactUs">Contact Us</a> |
+			<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+		</nav>
+	</div>
+	<br>
+	<div align="center">
+		<b>Modify User Profile Details</b> <br>
+		<br>
+		<div th:if="${profile != null}">
+			<form action="/user/updateProfile" method="post"
+				modelAttribute="profile">
+				<table>
+					<tr>
+						<td>User Id</td>
+						<td><input type="number" name="userId" min="0"
+							th:value="${profile.userId}" readonly /></td>
+					</tr>
+					<tr>
+						<td>First Name</td>
+						<td><input type="text" name="firstName"
+							th:value="${profile.firstName}" placeholder="Enter First Name"
+							required="required" /></td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td><input type="text" name="lastName"
+							th:value="${profile.lastName}" placeholder="Enter Last Name"
+							required="required" /></td>
+					</tr>
+					<tr>
+						<td>City</td>
+						<td><input type="text" name="city" th:value="${profile.city}"
+							placeholder="Enter City" required="required" /></td>
+					</tr>
+					<tr>
+						<td>DOB</td>
+						<td><input type="text" name="dob" th:value="${profile.dob}"
+							placeholder="Enter DOB(dd/MM/YYYY))" required="required" /></td>
+					</tr>
+					<tr>
+						<td>Gender</td>
+						<td><input type="radio" name="gender" value="Male"
+							th:checked="${profile.gender == 'Male'}" required>Male <input
+							type="radio" name="gender" value="Female"
+							th:checked="${profile.gender == 'Female'}">Female</td>
+					</tr>
+					<tr>
+						<td>Phone Number</td>
+						<td><input type="text" name="phoneNumber"
+							th:value="${profile.phoneNumber}"
+							placeholder="Enter Phone Number" required="required" /></td>
+					</tr>
+					<tr>
+						<td>Email Id</td>
+						<td><input type="email" name="emailId"
+							th:value="${profile.emailId}" placeholder="Enter Email Id"
+							required="required" /></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Modify Profile" /></td>
+						<td><input type="reset" value="Reset" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

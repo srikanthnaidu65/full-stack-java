@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Add Profile</title>
+
+<script type="text/javascript">
+window.history.forward();
+function noBack() {
+	window.history.forward();
+}
+</script>
+
+</head>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" >
+<div align="center">
+	<img src="../static/images/titletext.png" th:src="@{/images/titletext.png}" width="400" height="50" />
+	<img src="../static/images/titlelogo.jpg" th:src="@{/images/titlelogo.jpg}" width="150" height="100" />
+</div>
+	<hr>
+<div align="right">
+<nav>
+	<a style="color:blue" href="/employee/employeeHome">Home</a> |
+	<a style="color:blue" href="/employee/addProfile">Add Profile</a> |
+	<a style="color:blue" href="/employee/modifyProfile">Modify Profile</a> |
+	<a style="color:blue" href="/employee/deleteProfile">Delete Profile</a> |
+	<a style="color:blue" href="/employee/profileUpload">Upload Profile</a> |
+	<a style="color:blue" href="/employee/searchJob">Search Job Details</a> |
+	<a style="color:blue" href="/user/logout"><label th:text="'Logout(' + ${session.user} + ')'" ></label></a>
+</nav>
+</div>
+<br>
+<div align="center">
+<b>Add Profile Details</b>
+<br><br>
+<form action="/employee/saveProfile" method="post" modelAttribute="emp">
+<table>
+<tr>
+<td>First Name</td>
+<td><input type="text" name="firstName" placeholder="Enter First Name" required="required"/></td>
+</tr>
+<tr>
+<td>Last Name</td>
+<td><input type="text" name="lastName" placeholder="Enter Last Name" required="required"/></td>
+</tr>
+<tr>
+<td>Skill Set</td>
+<td><input type="text" name="skillSet" placeholder="Enter Skill Set" required="required"/></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><input type="text" name="location" placeholder="Enter Location" required="required"/></td>
+</tr>
+<tr>
+<td>DOB</td>
+<td><input type="text" name="dob" placeholder="Enter DOB(dd/MM/YYYY))" required="required"/></td>
+</tr>
+<tr>
+<td>Qualification</td>
+<td><input type="text" name="qualification" placeholder="Enter Qualification" required="required"/></td>
+</tr>
+<tr>
+<td>Total Experience</td>
+<td><input type="number" name="experience" min="0" placeholder="Enter Experience in Years" required="required"/></td>
+</tr>
+<tr>
+<td>Gender</td>
+<td><input type="radio" name="gender" value="Male" required>Male
+<input type="radio" name="gender" value="Female">Female</td>
+</tr>
+<tr>
+<td>Phone Number</td>
+<td><input type="text" name="phoneNumber" placeholder="Enter Phone Number" required="required"/></td>
+</tr>
+<tr>
+<td>Email Id</td>
+<td><input type="email" name="emailId" placeholder="Enter Email Id" required="required"/></td>
+</tr>
+<tr>
+<td><input type="submit" value="Add Profile"/></td>
+<td><input type="reset" value="Reset"/></td>
+</tr>
+</table>
+</form>
+</div>
+
+</body>
+</html>
