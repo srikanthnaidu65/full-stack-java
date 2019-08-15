@@ -1,0 +1,12 @@
+<?xml version = "1.0"?>
+<project name="Ant Assignment2" default="target1">
+	<target name="target1">
+		<property name="course" value="ANT" />
+		<echo>course: ${course} </echo>
+	</target>
+	<import file="build2.xml" />
+	<target name="firstTarget">
+		<antcall target="target2" />
+		<echo>course: ${course} </echo>
+	</target>
+</project>

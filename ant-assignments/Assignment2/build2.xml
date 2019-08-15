@@ -1,0 +1,7 @@
+<?xml version = "1.0"?>
+<project name="Ant Assignment2" default="target2">
+	<property name="course" value="JUNIT" />
+	<target name="target2">
+		<echo>course: ${course} </echo>
+	</target>
+</project>

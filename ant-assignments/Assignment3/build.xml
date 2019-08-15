@@ -1,0 +1,54 @@
+<?xml version = "1.0"?>
+<project name="Ant Assignment3" default="sendmail">
+	<path id="master-classpath">
+		<fileset dir="${web.dir}/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${build.dir}" />
+	</path>
+
+	<target name="init">
+		<echo>Target - init</echo>
+		<property name="src.dir" value="src" />
+		<property name="web.dir" value="war" />
+		<property name="build.dir" value="${web.dir}/WEB-INF/classes" />
+		<property name="name" value="fax" />
+		<path id="master-classpath">
+			<fileset dir="${web.dir}/WEB-INF/lib">
+				<include name="*.jar" />
+			</fileset>
+			<pathelement path="${build.dir}" />
+		</path>
+	</target>
+
+	<target name="prepare" depends="init">
+		<echo>Target - prepare</echo>
+		<mkdir dir="${build.dir}" />
+
+		<javac destdir="${build.dir}" source="1.8" target="1.8">
+			<src path="${src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+
+	<target name="clean" depends="prepare">
+		<echo>Target - clean</echo>
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="sendmail" depends="clean">
+		<echo>Target - sendmail</echo>
+		<mail encoding="mime" mailhost="smtp.gmail.com"
+			subject="[REPORT] ${build} on ${env} environment - Build report"
+			tolist="srikanth.naidu65@gmail.com">
+			<from address="srikanth.naidu65@gmail.com" />
+			<replyto address="srikanth.naidu65@gmail.com" />
+			<message>build successfully completed</message>
+		</mail>
+	</target>
+
+</project>

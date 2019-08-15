@@ -1,0 +1,12 @@
+<?xml version = "1.0"?>
+<project name="Ant Assignment1" default="target1">
+	<target name="target1">
+		<echo>Hello Srikanth!</echo>
+	</target>
+	<target name="target2">
+		<echo>Hello Srikanth. Start your Ant assignments.</echo>
+	</target>
+	<target name="target3">
+		<echo>Hello Srikanth. Complete your Ant assignments.</echo>
+	</target>
+</project>
