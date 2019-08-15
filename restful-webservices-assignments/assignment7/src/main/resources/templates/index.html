@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Assignment7</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+var app = angular.module("myApp", []);
+
+app.controller('myCtrl', function($scope, $http) {
+	
+	$scope.flag = false;
+	
+	$scope.getBalance = function(accNo) {
+		console.log(accNo);
+		$http.get('/getBalance?accNo=' +accNo).then(function(output) {
+			console.log(output);
+			if (output.status == 200) {
+				$scope.flag = true;
+				$scope.account = output.data;
+			}
+		}, function(error) {
+			if(error.status == 404) {
+				$scope.flag = false;
+				alert("Account number not found!");
+				$scope.amount = "";
+			} else {
+				$scope.flag = false;
+				alert("Unknown error occured!");
+			}
+		});
+	}
+		
+	$scope.deposit = function(accNo, amount) {
+		console.log(accNo+", "+amount);
+		var params = {};
+	    params.accNo = accNo;
+	    params.amount = amount;
+		$http.post('/deposit', {}, { params: params }).then(function(output) {
+			console.log(output);
+			if (output.status == 200) {
+				$scope.flag = true;
+				$scope.account = output.data;
+				alert("Amount deposited successfully!");
+				$scope.amount = "";
+			}
+		}, function(error) {
+			$scope.flag = false;
+			alert("Unknown error occured!");
+		});
+	}
+    
+	$scope.withdraw = function(accNo, amount) {
+		console.log(accNo+", "+amount);
+		var params = {};
+	    params.accNo = accNo;
+	    params.amount = amount;
+		$http.post('/withdraw', {}, { params: params }).then(function(output) {
+			console.log(output);
+			if (output.status == 200) {
+				$scope.flag = true;
+				$scope.account = output.data;
+				alert("Amount withdrawn successfully!");
+				$scope.amount = "";
+			}
+		}, function(error) {
+			if (error.status == 406) {
+				$scope.flag = false;
+				alert("Withdraw not allowed. Minimum account balance not maintained!");
+			} else if(error.status == 404) {
+				flag = false;
+				alert("Account number not found!");
+			} else {
+				$scope.flag = false;
+				alert("Unknown error occured!");
+			}
+		});
+	}
+});
+</script>
+</head>
+
+<body>
+	<h1>Banking Application</h1>
+	<hr />
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<div ng-show="flag">
+			<p>Available Balance in account: {{ account.balance }}</p>
+		</div>
+		<table border="0">
+			<tr>
+				<td>Account No:</td>
+				<td><input type="number" ng-model="accNo" required /></td>
+			</tr>
+			<tr>
+				<td>Amount:</td>
+				<td><input type="number" ng-model="amount" /></td>
+			</tr>
+			<tr>
+				<td><button ng-click="getBalance(accNo)">Check Balance</button>
+				<button ng-click="deposit(accNo, amount)">Deposit</button>
+				<button ng-click="withdraw(accNo, amount)">Withdraw</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

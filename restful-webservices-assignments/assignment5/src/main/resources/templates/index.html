@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Assignment5</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+var app = angular.module("myApp", []);
+
+app.controller('myCtrl', function($scope, $http) {
+	$scope.add = function(num1, num2) {
+		var params = {};
+	    params.num1 = num1;
+	    params.num2 = num2;
+		$http.get('/add', { params: params }).then(function(output) {
+			console.log(output);
+			$scope.result = output.data;
+		}, function(error) {
+			console.log("fail");
+		});
+		
+	}
+	
+	$scope.subtract = function(num1, num2) {
+		var params = {};
+	    params.num1 = num1;
+	    params.num2 = num2;
+		$http.get('/subtract', { params: params }).then(function(output) {
+			console.log(output);
+			$scope.result = output.data;
+		}, function(error) {
+			console.log("fail");
+		});
+		
+	}
+});
+</script>
+</head>
+
+<body>
+	<h1>Name Uppercase</h1>
+	<hr />
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<table border="0">
+			<tr>
+				<td>Enter Number1:</td>
+				<td><input type="number" ng-model="num1" /></td>
+			</tr>
+			<tr>
+				<td>Enter Number2:</td>
+				<td><input type="number" ng-model="num2" /></td>
+			</tr>
+			<tr>
+				<td>Result:</td>
+				<td ng-bind="result"></td>
+			</tr>
+			<tr>
+				<td><button ng-click="add(num1, num2)">Add</button></td>
+				<td><button ng-click="subtract(num1, num2)">Subtract</button></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

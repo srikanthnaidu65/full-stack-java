@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Assignment4</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+	var app = angular.module("myApp", []);
+
+	app.controller('myCtrl', function($scope, $http) {
+		$scope.convertCase = function(userName) {
+			console.log($scope.userName);
+			$http.get('/convertCase?userName=' +userName).then(function(output) {
+				console.log(output);
+				$scope.result = output.data.result;
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+	});
+</script>
+</head>
+
+<body>
+	<h1>Name Uppercase</h1>
+	<hr/>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<table border="0">
+			<tr>
+				<td>Enter Name:</td>
+				<td><input type="text" ng-model="userName" placeholder="Enter Name"/></td>
+				<td ng-bind="result"></td>
+			</tr>
+			<tr>
+				<td><button ng-click="convertCase(userName)">Submit</button></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Assignment3</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+	var app = angular.module("myApp", []);
+
+	app.controller('myCtrl', function($scope, $http) {
+		$scope.getData = function(num) {
+			console.log($scope.num);
+			$http.get('/getData?num=' + num).then(function(output) {
+				console.log(output);
+				$scope.result = output.data;
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+	});
+</script>
+</head>
+
+<body>
+	<h1>Data Double</h1>
+	<hr/>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<table border="0">
+			<tr>
+				<td>Enter Number:</td>
+				<td><input type="number" ng-model="num" /></td>
+				<td ng-bind="result"></td>
+			</tr>
+			<tr>
+				<td><button ng-click="getData(num)">Submit</button></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Assignment8</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+	var app = angular.module("myApp", []);
+
+	app.controller('myCtrl', function($scope, $http) {
+
+		$scope.convert = function(title, singer) {
+			console.log(title + ", " + singer);
+			var params = {};
+			params.title = title;
+			params.singer = singer;
+			$http.get('/convert', {
+				params : params
+			}).then(function(output) {
+				console.log(output);
+				$scope.result = output.data;
+			}, function(error) {
+				console.log("fail");
+			});
+		}
+	});
+</script>
+</head>
+
+<body>
+	<h1>Object to JSON Converter</h1>
+	<hr />
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<table border="0">
+			<tr>
+				<td>Title:</td>
+				<td><input type="text" ng-model="title" /></td>
+			</tr>
+			<tr>
+				<td>Singer:</td>
+				<td><input type="text" ng-model="singer" /></td>
+			</tr>
+			<tr>
+				<td><button ng-click="convert(title, singer)">Convert</button></td>
+			</tr>
+		</table>
+		<div ng-bind="result"></div>
+	</div>
+</body>
+</html>

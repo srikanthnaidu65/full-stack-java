@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Assignment6</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script>
+var app = angular.module("myApp", []);
+
+app.controller('myCtrl', function($scope, $http) {
+	
+	$http.get('/getAllEmployee').then(function(output) {
+			console.log(output);
+			$scope.emp=output.data;
+		}, function(error) {
+			console.log("fail");
+		});
+	
+	$scope.deleteEmployee = function(empId) {
+		console.log("triggered");
+		$http.delete('/deleteEmployee?id='+empId).then(function(output) {
+			console.log(output);
+			$scope.emp=output.data;
+			alert("Employee Deleted!");
+		}, function(error) {
+			console.log("fail");
+		});
+	}
+		
+	$scope.updateEmployee = function(empId, empName, empsalary) {
+		console.log(empsalary);
+		var params = {};
+	    params.id = empId;
+	    params.name = empName;
+	    params.salary = empsalary;
+		$http.post('/updateEmployee', {}, { params: params }).then(function(output) {
+			console.log(output);
+			$scope.emp=output.data;
+			alert("Employee Updated!");
+		}, function(error) {
+			console.log("fail");
+		});
+	}
+    
+    $scope.insertEmployee = function(empId, empName, empSalary) {
+		console.log(empId+", "+empName+", "+empSalary);
+		var params = {};
+	    params.id = empId;
+	    params.name = empName;
+	    params.salary = empSalary;
+		$http.put('/insertEmployee', {}, { params: params }).then(function(output) {
+			console.log(output);
+			$scope.emp=output.data;
+			$scope.empId = "";
+			$scope.empName = "";
+			$scope.empSalary = "";
+			alert("Employee Inserted!");
+		}, function(error) {
+			console.log("fail");
+		});
+	}
+});
+</script>
+</head>
+
+<body>
+	<h1>Employee Management Application</h1>
+	<hr />
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<table border="1px" cellpadding="5">
+			<tr ng-repeat="e in emp">
+				<td>{{ e.empId }}</td>
+				<td><input type="text" ng-model="e.empName"></input></td>
+				<td><input type="text" ng-model="e.empSalary"></input></td>
+				<td><button ng-click="updateEmployee(e.empId, e.empName, e.empSalary)">Update</button></td>
+				<td><button ng-click="deleteEmployee(e.empId)">Delete</button></td>
+			</tr>
+		</table>
+		<h4>Insert Employee</h4>
+			<table border="0">
+				<tr>
+					<td>Employee Id:</td>
+					<td><input type="text" ng-model="empId" required /></td>
+				</tr>
+				<tr>
+					<td>Employee Name:</td>
+					<td><input type="text" ng-model="empName" required /></td>
+				</tr>
+				<tr>
+					<td>Employee Salary:</td>
+					<td><input type="number" ng-model="empSalary" required /></td>
+				</tr>
+				<tr>
+					<td><button
+							ng-click="insertEmployee(empId, empName, empSalary)">Submit</button></td>
+				</tr>
+			</table>
+		</div>
+</body>
+</html>
