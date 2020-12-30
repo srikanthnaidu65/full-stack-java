@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>3.8.1</junit.version>
 		<apache.version>3.0</apache.version>
-		<mysql-version>5.1.35</mysql-version>
+		<mysql-version>8.0.16</mysql-version>
 	</properties>
 
 	<dependencies>
