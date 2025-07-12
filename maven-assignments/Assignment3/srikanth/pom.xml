@@ -13,7 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.13.1</junit.version>
-		<apache.version>3.0</apache.version>
+		<apache.version>3.18.0</apache.version>
 		<mysql-version>8.0.28</mysql-version>
 	</properties>
 
